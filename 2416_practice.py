@@ -717,13 +717,13 @@ gender = "남자"
 weight = round(std_weight(height / 100, gender), 2)
 print("키 {0}cm {1}의 표준 체중은 {2}kg 입니다.".format(height, gender, weight))
 
-
 # ----------------------------------------------------------
 from random import *
 
+
 # 일반 유닛, 부모클래스
 class Unit:
-    def __init__(self, name, hp, speed ):
+    def __init__(self, name, hp, speed):
         self.name = name
         self.hp = hp
         self.speed = speed
@@ -731,7 +731,7 @@ class Unit:
 
     def move(self, location):
         # print("[지상 유닛 이동]")
-        print("{0} : {1} 방향으로 이동합니다. [속도 {2}]"\
+        print("{0} : {1} 방향으로 이동합니다. [속도 {2}]" \
               .format(self.name, location, self.speed))
 
     def damaged(self, damage):
@@ -742,6 +742,7 @@ class Unit:
         if self.hp <= 0:
             print("{0} : 파괴되었습니다.".format(self.name))
 
+
 #
 # marine1 = Unit("마린", 40, 5)
 # marine2 = Unit("마린", 40, 5)
@@ -750,7 +751,7 @@ class Unit:
 # marine3 = Unit("마린",40)
 
 # ----------------------------------------------------------
-#레이스 : 공중유닛, 비행기, 클로킹(상대에게 보이지 ㅇ낳음)
+# 레이스 : 공중유닛, 비행기, 클로킹(상대에게 보이지 ㅇ낳음)
 # wraith1 = Unit("레이스", 80 , 5)
 # print("유닛 이름 : {0}, 공격력 : {1}".format(wraith1.name, wraith1.damage))
 
@@ -763,12 +764,14 @@ class Unit:
 # ----------------------------------------------------------
 # 공격 유닛, 자식 클래스
 class AttrackUnit(Unit):
-    def __init__(self, name , hp, speed, damage):
+    def __init__(self, name, hp, speed, damage):
         Unit.__init__(self, name, hp, speed)
         self.damage = damage
+
     def attack(self, location):
-        print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]"\
+        print("{0} : {1} 방향으로 적군을 공격 합니다. [공격력 {2}]" \
               .format(self.name, location, self.damage))
+
 
 # 마린
 class Marine(AttrackUnit):
@@ -776,6 +779,7 @@ class Marine(AttrackUnit):
         AttrackUnit.__init__(self, "마린", 40, 1, 5)
 
         # 스팀팩: 일정시간동안 이동 및 공격 속도를 증가, 체력 10 감소
+
     def stimpack(self):
         if self.hp > 10:
             self.hp -= 10
@@ -783,24 +787,26 @@ class Marine(AttrackUnit):
         else:
             print("{0} : 체력이 부족하여 스팀팩을 사용하지 않습니다.".format(self.name))
 
-#탱크
+
+# 탱크
 class Tank(AttrackUnit):
-     #시즈모드 : 탱크를 지상에 고정시켜, 더 높은 파워로 공격 가능, 이동불가
-    seize_developed = False # 시즈모드 개발여부
+    # 시즈모드 : 탱크를 지상에 고정시켜, 더 높은 파워로 공격 가능, 이동불가
+    seize_developed = False  # 시즈모드 개발여부
+
     def __init__(self):
-        AttrackUnit.__init__(self, "탱크" , 150, 1, 35)
+        AttrackUnit.__init__(self, "탱크", 150, 1, 35)
         self.seize_developed = False
 
     def set_seize_mode(self):
         if Tank.seize_developed == False:
             return
 
-        #현재 시즈모드가 아닐 때 -> 시즈모드
+        # 현재 시즈모드가 아닐 때 -> 시즈모드
         if self.seize_developed == False:
             print("{0} : 시즈모드로 전환합니다.".format(self.name))
             self.damage *= 2
             self.seize_developed = True
-        #현재 시즈모드일 때 - > 시즈모드 해제
+        # 현재 시즈모드일 때 - > 시즈모드 해제
         else:
             print("{0} : 시즈모드를 해제합니다.".format(self.name))
             self.damage /= 2
@@ -825,33 +831,36 @@ class Flyable:
     def __init__(self, flying_speed):
         self.flying_speed = flying_speed
 
-    def fly(self, name , location):
-        print("{0} : {1} 방향으로 날아갑니다. [속도 {2}]"\
+    def fly(self, name, location):
+        print("{0} : {1} 방향으로 날아갑니다. [속도 {2}]" \
               .format(name, location, self.flying_speed))
 
+
 # 공중 공격 유닛 클래스
-class FlyableAttackUnit(AttrackUnit, Flyable): # 다중상속은 "," 사용
-    def __init__(self,name, hp, damage, flying_speed):
-        AttrackUnit.__init__(self, name, hp, 0 , damage)  # 지상 speed 는 0
+class FlyableAttackUnit(AttrackUnit, Flyable):  # 다중상속은 "," 사용
+    def __init__(self, name, hp, damage, flying_speed):
+        AttrackUnit.__init__(self, name, hp, 0, damage)  # 지상 speed 는 0
         Flyable.__init__(self, flying_speed)
 
     def move(self, location):
         # print("[공중 유닛 이동]")
         self.fly(self.name, location)
 
+
 # 발키리 : 공중 공격 유닛, 한번에 14발 미사일 발사
 valkyrie = FlyableAttackUnit("발키리", 200, 6, 5)
 valkyrie.fly(valkyrie.name, "3시")
 # ----------------------------------------------------------
 # 벌쳐 : 지상 유닛, 기동성이 좋음
-vulture = AttrackUnit("벌쳐" , 80 , 10, 20)
+vulture = AttrackUnit("벌쳐", 80, 10, 20)
 
 # 배틀크루저 : 공중 유닛, 체력도 굉장히 좋음, 공격력도 좋음
-battlecruiser = FlyableAttackUnit("배틀크루저", 500 , 25, 3)
+battlecruiser = FlyableAttackUnit("배틀크루저", 500, 25, 3)
 
 vulture.move("11시")
-#battlecruiser.fly(battlecruiser.name, "9시")
+# battlecruiser.fly(battlecruiser.name, "9시")
 battlecruiser.move("9시")
+
 
 # ----------------------------------------------------------
 # 건물
@@ -873,31 +882,34 @@ battlecruiser.move("9시")
 # game_over()
 
 # ----------------------------------------------------------
-#레이스
+# 레이스
 class Wraith(FlyableAttackUnit):
     def __init__(self):
-        FlyableAttackUnit.__init__(self, "레이스", 80 , 20 , 5)
-        self.clocked = False # 클로킹모드 해제 상태
+        FlyableAttackUnit.__init__(self, "레이스", 80, 20, 5)
+        self.clocked = False  # 클로킹모드 해제 상태
 
     def clocking(self):
-        if self.clocked == True: # 클로킹 모드 -> 모드 해제
+        if self.clocked == True:  # 클로킹 모드 -> 모드 해제
             print("{0} : 클로킹 모드 해제합니다.".format(self.name))
             self.clocked = False
-        else: # 클로킹 모드 해제 -> 모드 설정
+        else:  # 클로킹 모드 해제 -> 모드 설정
             print("{0} : 클로킹 모드 설정하빈다.".format(self.name))
             self.clocked = True
+
 
 def game_start():
     print("[알림] 새로운 게임을 시작합니다.")
 
+
 def game_over():
-    print("Player : gg") # good game
+    print("Player : gg")  # good game
     print("[Player] 님이 게임에서 퇴장하셨습니다.")
+
 
 # 실제 게임 시작
 game_start()
 
-#마린 3기 생성
+# 마린 3기 생성
 m1 = Marine()
 m2 = Marine()
 m3 = Marine()
@@ -906,7 +918,7 @@ m3 = Marine()
 t1 = Tank()
 t2 = Tank()
 
-#레이스 1기 생성
+# 레이스 1기 생성
 w1 = Wraith()
 
 # 유닛 일괄 관리 (생성된 모든 유닛 append)
@@ -937,12 +949,13 @@ for unit in attack_units:
 # 전군 공격
 for unit in attack_units:
     unit.attack("1시")
-#전군 피해
+# 전군 피해
 for unit in attack_units:
     unit.damaged(randint(5, 21))  # 공격은 랜덤으로 받음 (5 ~ 20)
 
 # 게임 종료
 game_over()
+
 
 # ----------------------------------------------------------
 # Quiz) 주어진 코드를 활용하여 부동산 프로그램을  작성하시오
@@ -963,10 +976,11 @@ class House:
         self.price = price
         self.completion_year = completion_year
 
-    #매물 정보 표시
+    # 매물 정보 표시
     def show_detail(self):
-        print(self.location, self.house_type, self.deal_type\
+        print(self.location, self.house_type, self.deal_type \
               , self.price, self.completion_year)
+
 
 houses = []
 house1 = House("강남", "아파트", "매매", "10억", "2010년")
@@ -980,3 +994,54 @@ houses.append(house3)
 print("총 {0}대의 매물이 있습니다.".format(len(houses)))
 for house in houses:
     house.show_detail()
+
+# ----------------------------------------------------------
+# import theater_module
+# theater_module.price(3)     # 3명이서 영화 보러 갔을때 가격
+# theater_module.price_morning(4)     # 4명이서 조조 할인 영화 보러 갔을 때
+# theater_module.price_soldier(5)     # 5명이서 군인이 영화 보러 갔을 때
+
+# import theater_module as mv
+# mv.price(3)
+# mv.price_morning(4)
+# mv.price_soldier(5)
+
+# from theater_module import *
+# # from random import
+# price(3)
+# price_morning(4)
+# price_soldier(5)
+
+# from theater_module import price, price_morning
+# price(5)
+# price_morning(6)
+# price_soldier(7)
+
+from theater_module import price_soldier as price
+
+price(5)
+
+# ----------------------------------------------------------
+import travel.thailand
+# import travel.thailand.ThailandPackage
+trip_to = travel.thailand.ThailandPackage()
+trip_to.detail()
+
+from travel.thailand import ThailandPackage
+trip_to = ThailandPackage()
+trip_to.detail()
+
+from travel import vietnam
+trip_to = vietnam.VietmanPackage()
+trip_to.detail()
+
+# ----------------------------------------------------------
+from travel import *
+#trip_to = vietnam.VietmanPackage()
+trip_to = thailand.ThailandPackage()
+trip_to.detail()
+
+import inspect
+import random
+print(inspect.getfile(random))
+print(inspect.getfile(thailand))

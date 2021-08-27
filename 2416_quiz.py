@@ -356,3 +356,41 @@ result = get_compliment('놀랄 만한 상황')
 print(result) # 요모야..!
 result = get_compliment('좋은 마음가짐이다!')
 print(result) # 으무!
+
+#----------------------------------------------------------------------
+
+'''
+Quiz5-1. 모듈이란?
+- 필요한것들끼리 부품처럼 잘 만들어진 파일이라고 볼 수 있다.
+- 파이썬에서는 함수정의나 클래스 등의 파이썬 문장들의 파일을 담고 있는것.
+- 확장자가 .py 이다.
+
+Quiz5-2. 패키지란?
+- 모듈들을 모아둔 집합
+- 
+
+Quiz5-3. theater_module.py 모듈(파일)의 price 함수를 p학번 라는 이름으로 호출 하도록 import문을 작성하세요
+- from theater_module import price as p학번
+
+Quiz5-4. __all__의 역할은?
+-  특정 디렉토리 모듈을 *을 이용하여 import할때 해당 디렉토리의 __init__ 파일에 __all__이라는 변수를 설정해 import 할수 있는 모듈을 정의해 주는것
+
+Quiz5-5. 지금 파이썬 파일을 직접실행할 때만 실행되고, 다른 모듈에서 import할 때는 실행되지 않도록 하는 제어문은?
+- if-else
+
+Quiz5-6. travel 패키지(폴더) 안에 vietnam.py 모듈(파일) 안의 ThailandPackage 클래스를 생성하고 detail 함수를 호출하는 < 가 >, < 나 >, < 다 > 에 들어갈 각 방법은?
+import travel.vietnam
+< 가 > 
+trip_to = travel.vietnam.ThailandPackage()
+trip_to.detail()
+
+from travel import vietnam
+< 나 > 
+trip_to = vietnam.ThailandPackage()
+trip_to.detail()
+
+from travel.vietnam import ThailandPackage
+< 다 > 
+trip_to = ThailandPackage()
+trip_to.detail()
+'''
