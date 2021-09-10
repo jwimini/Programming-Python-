@@ -1021,7 +1021,8 @@ from theater_module import price_soldier as price
 
 price(5)
 
-# ----------------------------------------------------------
+#
+
 import travel.thailand
 # import travel.thailand.ThailandPackage
 trip_to = travel.thailand.ThailandPackage()

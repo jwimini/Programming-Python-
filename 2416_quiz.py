@@ -390,6 +390,7 @@ trip_to = vietnam.ThailandPackage()
 trip_to.detail()
 
 from travel.vietnam import ThailandPackage
+
 < 다 > 
 trip_to = ThailandPackage()
 trip_to.detail()
