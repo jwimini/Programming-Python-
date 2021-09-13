@@ -12,7 +12,7 @@ while True:
         print('숫자를 입력하세요')
         continue
     if len(guess) != len(answer):
-        raise InvalidLengthError('정답의 길이와 다른 것을 입력함')
+        raise InvalidLengthError(f'정답의 길이와 다른 것을 입력함{len(answer)}')
     strike, ball = check(guess, answer)
     print(f'{guess}\tstrike: {strike}, ball: {ball}')
     if answer == guess:
