@@ -1,7 +1,3 @@
-from threading import local
-
-import house as house
-
 print(5)
 print(-10)
 print(3.14)
@@ -1017,7 +1013,7 @@ for house in houses:
 # price_morning(6)
 # price_soldier(7)
 
-from theater_module import price_soldier as price
+from x.theater_module import price_soldier as price
 
 price(5)
 
