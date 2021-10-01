@@ -7,6 +7,10 @@ f.close()
 
 print(data)
 
+with open('text.txt', 'r', encoding='utf-8') as f:
+    data = f.read()
+print(data)
+
 print('한 줄씩 읽기')
 f = open('text.txt', 'r', encoding='utf-8')
 while True:
@@ -32,5 +36,6 @@ f = open('text.txt', 'r', encoding='utf-8')
 lines = f.readlines()
 f.close()
 for line in lines:
+    data = line.split(':')
     print('이름: ' + line.rstrip()[:3] + '\t좋아하는 색:' + line.rstrip()[-3:])
     print('이름: ' + data[0].rstrip() + '\t좋아하는 색:' + data[1].rstrip())
