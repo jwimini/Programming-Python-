@@ -23,3 +23,14 @@ lines = f.readlines()
 f.close()
 for line in lines:
     print(line.rstrip())
+
+#Quiz
+# 이름: wlalsdl[tab]좋아하는 색: 연노랑
+# 이름: 지민[tab]좋아하는 색: 연노랑
+print('지민[tab]좋아하는 색: 연노랑')
+f = open('text.txt', 'r', encoding='utf-8')
+lines = f.readlines()
+f.close()
+for line in lines:
+    print('이름: ' + line.rstrip()[:3] + '\t좋아하는 색:' + line.rstrip()[-3:])
+    print('이름: ' + data[0].rstrip() + '\t좋아하는 색:' + data[1].rstrip())
