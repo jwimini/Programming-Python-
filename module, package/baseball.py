@@ -2,6 +2,7 @@ from baseball_game_engine import make_answer, check
 from custom_error import InvalidLengthError
 
 answer = make_answer()
+count = 0
 
 while True:
     guess = input("뭘까?")
@@ -17,7 +18,8 @@ while True:
         continue
 
     strike, ball = check(guess, answer)
-    print(f'{guess}\tstrike: {strike}, ball: {ball}')
+    count +=1
+    print(f'{guess}\tstrike: {strike}, ball: {ball}\t{count}try')
     if answer == guess:
         print("정답입니다.")
         break
