@@ -1,3 +1,3 @@
-with open('binary.bin', 'rb') as f:
-    data = f.read()     #b'\xff\x00\x7f': 111111110000000001111111
-print(data)
+with open('binary.bin', 'wb') as f:
+    byte_list = bytes([255, 0,  127])
+    f.write(byte_list)
