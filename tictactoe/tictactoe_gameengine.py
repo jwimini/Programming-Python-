@@ -3,6 +3,7 @@ class TictactoeGameEngine:
         self.board = list('.' * 9)
         # ['.', '.', '.', '.', '.', '.', '.', '.', '.']
         self.turn = 'X'
+        self.SIZE = 3
 
     def show_board(self):
         # print('  '.join(self.board[0:3]))
@@ -32,8 +33,7 @@ class TictactoeGameEngine:
                 return self.turn
         # |줄
         for col in range(1, 3 + 1):
-            if self.board[self.position_to_index(1, col)] == self.board[self.position_to_index(2, col)] == self.board[
-                self.position_to_index(3, col)] == self.turn:
+            if self.board[self.position_to_index(1, col)] == self.board[self.position_to_index(2, col)] == self.board[self.position_to_index(3, col)] == self.turn:
                 return self.turn
 
         # /
